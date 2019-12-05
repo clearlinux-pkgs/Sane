@@ -4,7 +4,7 @@
 #
 Name     : Sane
 Version  : 2.8.3
-Release  : 2
+Release  : 3
 URL      : https://github.com/python-pillow/Sane/archive/v2.8.3.tar.gz
 Source0  : https://github.com/python-pillow/Sane/archive/v2.8.3.tar.gz
 Summary  : No detailed summary available
