@@ -4,10 +4,10 @@
 #
 Name     : Sane
 Version  : 2.8.3
-Release  : 4
+Release  : 5
 URL      : https://github.com/python-pillow/Sane/archive/v2.8.3.tar.gz
 Source0  : https://github.com/python-pillow/Sane/archive/v2.8.3.tar.gz
-Summary  : No detailed summary available
+Summary  : Scanner Access Now Easy
 Group    : Development/Tools
 License  : HPND
 Requires: Sane-license = %{version}-%{release}
@@ -51,13 +51,15 @@ python3 components for the Sane package.
 
 %prep
 %setup -q -n Sane-2.8.3
+cd %{_builddir}/Sane-2.8.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1561748856
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1583222792
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -73,7 +75,7 @@ python3 setup.py build
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/Sane
-cp COPYING %{buildroot}/usr/share/package-licenses/Sane/COPYING
+cp %{_builddir}/Sane-2.8.3/COPYING %{buildroot}/usr/share/package-licenses/Sane/459b82d6ee708b18521463ba4243bdf9a2a6e48e
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -84,7 +86,7 @@ echo ----[ mark ]----
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/Sane/COPYING
+/usr/share/package-licenses/Sane/459b82d6ee708b18521463ba4243bdf9a2a6e48e
 
 %files python
 %defattr(-,root,root,-)
